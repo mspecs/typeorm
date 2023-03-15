@@ -285,6 +285,11 @@ export class EntityMetadata {
     deleteDateColumn?: ColumnMetadata
 
     /**
+     * Gets entity column which contains a delete boolean value.
+     */
+    deleteBooleanColumn?: ColumnMetadata
+
+    /**
      * Gets entity column which contains an entity version.
      */
     versionColumn?: ColumnMetadata

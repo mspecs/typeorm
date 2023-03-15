@@ -238,6 +238,8 @@ export class PostgresDriver implements Driver {
         updateDateDefault: "now()",
         deleteDate: "timestamp",
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "int4",
         treeLevel: "int4",
         migrationId: "int4",

@@ -790,6 +790,15 @@ export class SubjectExecutor {
                         ] = new Date()
                     }
 
+                    if (
+                        subject.metadata.deleteBooleanColumn &&
+                        subject.metadata.deleteBooleanColumn.propertyName
+                    ) {
+                        partialEntity[
+                            subject.metadata.deleteBooleanColumn.propertyName
+                            ] = true
+                    }
+
                     const manager = this.queryRunner
                         .manager as MongoEntityManager
 
@@ -911,6 +920,15 @@ export class SubjectExecutor {
                         partialEntity[
                             subject.metadata.deleteDateColumn.propertyName
                         ] = null
+                    }
+
+                    if (
+                        subject.metadata.deleteBooleanColumn &&
+                        subject.metadata.deleteBooleanColumn.propertyName
+                    ) {
+                        partialEntity[
+                            subject.metadata.deleteBooleanColumn.propertyName
+                            ] = false
                     }
 
                     const manager = this.queryRunner

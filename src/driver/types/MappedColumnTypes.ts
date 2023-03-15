@@ -41,6 +41,11 @@ export interface MappedColumnTypes {
     deleteDate: ColumnType
 
     /**
+     * Column type for the delete boolean column.
+     */
+    deleteBoolean: ColumnType
+
+    /**
      * Precision of datetime column. Used in MySql to define milliseconds.
      */
     deleteDatePrecision?: number
@@ -49,6 +54,11 @@ export interface MappedColumnTypes {
      * Nullable value should be used by a database for "deleted date" column.
      */
     deleteDateNullable: boolean
+
+    /**
+     * Nullable value should be used by a database for "deleted boolean" column.
+     */
+    deleteBooleanNullable: boolean
 
     /**
      * Column type for the version column.

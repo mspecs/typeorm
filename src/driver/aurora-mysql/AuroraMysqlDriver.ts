@@ -258,6 +258,8 @@ export class AuroraMysqlDriver implements Driver {
         deleteDate: "datetime",
         deleteDatePrecision: 6,
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "int",
         treeLevel: "int",
         migrationId: "int",

@@ -2024,10 +2024,17 @@ export class SelectQueryBuilder<Entity extends ObjectLiteral>
 
         if (joinAttribute.metadata) {
             if (
-                joinAttribute.metadata.deleteDateColumn &&
+                (
+                    joinAttribute.metadata.deleteDateColumn ||
+                    joinAttribute.metadata.deleteBooleanColumn
+                ) &&
                 !this.expressionMap.withDeleted
             ) {
-                const conditionDeleteColumn = `${aliasName}.${joinAttribute.metadata.deleteDateColumn.propertyName} IS NULL`
+                const conditionDeleteColumn =
+                    joinAttribute.metadata.deleteDateColumn ?
+                        `${aliasName}.${joinAttribute.metadata.deleteDateColumn.propertyName} IS NULL` :
+                        `${aliasName}.${joinAttribute.metadata.deleteBooleanColumn!.propertyName} = false`;
+
                 joinAttribute.condition = joinAttribute.condition
                     ? ` ${joinAttribute.condition} AND ${conditionDeleteColumn}`
                     : `${conditionDeleteColumn}`

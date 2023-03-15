@@ -69,6 +69,7 @@ export class EntitySchemaTransformer {
             if (regularColumn.createDate) mode = "createDate"
             if (regularColumn.updateDate) mode = "updateDate"
             if (regularColumn.deleteDate) mode = "deleteDate"
+            if (regularColumn.deleteBoolean) mode = "deleteBoolean"
             if (regularColumn.version) mode = "version"
             if (regularColumn.treeChildrenCount) mode = "treeChildrenCount"
             if (regularColumn.treeLevel) mode = "treeLevel"

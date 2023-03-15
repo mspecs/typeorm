@@ -449,7 +449,7 @@ export class SoftDeleteQueryBuilder<Entity extends ObjectLiteral>
             throw new TypeORMError(
                 `Cannot get entity metadata for the given alias "${this.expressionMap.mainAlias}"`,
             )
-        if (!metadata.deleteDateColumn) {
+        if (!metadata.deleteDateColumn && !metadata.deleteBooleanColumn) {
             throw new MissingDeleteDateColumnError(metadata)
         }
 
@@ -458,16 +458,30 @@ export class SoftDeleteQueryBuilder<Entity extends ObjectLiteral>
 
         switch (this.expressionMap.queryType) {
             case "soft-delete":
-                updateColumnAndValues.push(
-                    this.escape(metadata.deleteDateColumn.databaseName) +
+                if (metadata.deleteBooleanColumn) {
+                    updateColumnAndValues.push(
+                        this.escape(metadata.deleteBooleanColumn.databaseName) +
+                        " = true",
+                    )
+                } else if (metadata.deleteDateColumn) {
+                    updateColumnAndValues.push(
+                        this.escape(metadata.deleteDateColumn.databaseName) +
                         " = CURRENT_TIMESTAMP",
-                )
+                    )
+                }
                 break
             case "restore":
-                updateColumnAndValues.push(
-                    this.escape(metadata.deleteDateColumn.databaseName) +
-                        " = NULL",
-                )
+                if (metadata.deleteBooleanColumn) {
+                    updateColumnAndValues.push(
+                        this.escape(metadata.deleteBooleanColumn.databaseName) +
+                        " = false",
+                    )
+                } else if (metadata.deleteDateColumn) {
+                    updateColumnAndValues.push(
+                        this.escape(metadata.deleteDateColumn.databaseName) +
+                        " = null",
+                    )
+                }
                 break
             default:
                 throw new TypeORMError(

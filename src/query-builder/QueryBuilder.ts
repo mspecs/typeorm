@@ -829,13 +829,18 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
             if (
                 this.expressionMap.queryType === "select" &&
                 !this.expressionMap.withDeleted &&
-                metadata.deleteDateColumn
+                (
+                    metadata.deleteDateColumn ||
+                    metadata.deleteBooleanColumn
+                )
             ) {
+
+                const deleteColumn = metadata.deleteDateColumn! || metadata.deleteBooleanColumn!;
                 const column = this.expressionMap.aliasNamePrefixingEnabled
                     ? this.expressionMap.mainAlias!.name +
                       "." +
-                      metadata.deleteDateColumn.propertyName
-                    : metadata.deleteDateColumn.propertyName
+                    deleteColumn.propertyName
+                    : deleteColumn.propertyName
 
                 const condition = `${this.replacePropertyNames(column)} IS NULL`
                 conditionsArray.push(condition)

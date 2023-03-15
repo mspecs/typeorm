@@ -11,6 +11,7 @@ export type ColumnMode =
     | "createDate"
     | "updateDate"
     | "deleteDate"
+    | "deleteBoolean"
     | "version"
     | "treeChildrenCount"
     | "treeLevel"

@@ -177,6 +177,8 @@ export class OracleDriver implements Driver {
         updateDateDefault: "CURRENT_TIMESTAMP",
         deleteDate: "timestamp",
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "number",
         treeLevel: "number",
         migrationId: "number",

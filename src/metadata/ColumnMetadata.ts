@@ -279,6 +279,11 @@ export class ColumnMetadata {
     isDeleteDate: boolean = false
 
     /**
+     * Indicates if this column contains an entity delete date.
+     */
+    isDeleteBoolean: boolean = false
+
+    /**
      * Indicates if this column contains an entity version.
      */
     isVersion: boolean = false
@@ -469,6 +474,7 @@ export class ColumnMetadata {
             this.isCreateDate = options.args.mode === "createDate"
             this.isUpdateDate = options.args.mode === "updateDate"
             this.isDeleteDate = options.args.mode === "deleteDate"
+            this.isDeleteBoolean = options.args.mode === "deleteBoolean"
             this.isVersion = options.args.mode === "version"
             this.isObjectId = options.args.mode === "objectId"
         }
@@ -533,6 +539,12 @@ export class ColumnMetadata {
             )
                 this.precision =
                     options.connection.driver.mappedDataTypes.deleteDatePrecision
+        } else if (this.isDeleteBoolean) {
+            if (!this.type)
+                this.type = options.connection.driver.mappedDataTypes.deleteBoolean
+            if (!this.isNullable)
+                this.isNullable =
+                    options.connection.driver.mappedDataTypes.deleteBooleanNullable
         }
         if (this.isVersion)
             this.type = options.connection.driver.mappedDataTypes.version

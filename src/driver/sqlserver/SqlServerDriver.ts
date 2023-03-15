@@ -192,6 +192,8 @@ export class SqlServerDriver implements Driver {
         updateDateDefault: "getdate()",
         deleteDate: "datetime2",
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "int",
         treeLevel: "int",
         migrationId: "int",

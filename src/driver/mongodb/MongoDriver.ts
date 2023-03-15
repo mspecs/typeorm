@@ -114,6 +114,8 @@ export class MongoDriver implements Driver {
         updateDateDefault: "",
         deleteDate: "int",
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "int",
         treeLevel: "int",
         migrationId: "int",

@@ -138,6 +138,8 @@ export class SpannerDriver implements Driver {
         updateDateDefault: "",
         deleteDate: "timestamp",
         deleteDateNullable: true,
+        deleteBoolean: "boolean",
+        deleteBooleanNullable: false,
         version: "int64",
         treeLevel: "int64",
         migrationId: "int64",
