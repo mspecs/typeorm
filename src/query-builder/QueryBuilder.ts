@@ -842,7 +842,11 @@ export abstract class QueryBuilder<Entity extends ObjectLiteral> {
                     deleteColumn.propertyName
                     : deleteColumn.propertyName
 
-                const condition = `${this.replacePropertyNames(column)} IS NULL`
+                const condition =
+                    metadata.deleteDateColumn
+                        ? `${this.replacePropertyNames(column)} IS NULL`
+                        : `${this.replacePropertyNames(column)} = false`;
+
                 conditionsArray.push(condition)
             }
 
