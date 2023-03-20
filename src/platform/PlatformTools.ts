@@ -66,6 +66,9 @@ export class PlatformTools {
                 case "mysql2":
                     return require("mysql2")
 
+                case "@mspecs/mysql2":
+                    return require("@mspecs/mysql2")
+
                 /**
                  * oracle
                  */
